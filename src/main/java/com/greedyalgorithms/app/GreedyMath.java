@@ -33,4 +33,15 @@ public final class GreedyMath {
 
         return amountsOfDensityValues;
     }
+
+    public static long maxDotProduct(int[] listA, int[] listB) {
+        Arrays.sort(listA);
+        Arrays.sort(listB);
+        long sumProduct = 0;
+
+        for (int i = 0; i < listA.length; i++) {
+            sumProduct += listA[i] * listB[i];
+        }
+        return sumProduct;
+    }
 }
