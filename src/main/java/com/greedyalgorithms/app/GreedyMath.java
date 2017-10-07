@@ -8,12 +8,12 @@ public final class GreedyMath {
 
     private GreedyMath () {}
 
-    public static int extractBiggerValueFromTotal(int total, int[] values ){
-        Arrays.sort(values);
+    public static int extractBiggestValue(int balance, int[] subtractors){
+        Arrays.sort(subtractors);
 
-        for (int i=values.length; i>0; i--)
-            while (total >= values[i-1]) return total - values[i-1];
-        return total;
+        for (int i=subtractors.length; i>0; i--)
+            while (balance >= subtractors[i-1]) return balance - subtractors[i-1];
+        return balance;
     }
 
     public static TreeMap<Double, Integer> itemsForDensityMap(int[] values, int[] weights){

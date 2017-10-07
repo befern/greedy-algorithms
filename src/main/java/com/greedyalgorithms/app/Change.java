@@ -11,7 +11,7 @@ public class Change {
         int coinsUsed = 0;
 
         while (total > 0) {
-            total = GreedyMath.extractBiggerValueFromTotal(total, coins);
+            total = GreedyMath.extractBiggestValue(total, coins);
             coinsUsed += 1;
         }
 
