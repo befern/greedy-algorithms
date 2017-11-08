@@ -3,12 +3,13 @@ package com.greedyalgorithms.app;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListStub<T extends Object>{
-    List<T> list = new ArrayList<>();
+public class ListStub extends ArrayList {
 
-    public ListStub(T... elements){
-        for (int i=0; i<elements.length; i++) list.add(elements[i]);
+    public static <T> List<T> create(T... elements) {
+        List<T> list = new ArrayList<>();
+
+        for (int i = 0; i < elements.length; i++) list.add(elements[i]);
+
+        return list;
     }
-
-    public List<T> getList(){ return list; }
 }

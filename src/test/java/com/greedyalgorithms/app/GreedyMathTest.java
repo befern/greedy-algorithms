@@ -2,10 +2,11 @@ package com.greedyalgorithms.app;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GreedyMathTest extends TestCase{
+    List<Integer> resultSummands;
 
     public void testDotProductAllPositives(){
         assertEquals(897,GreedyMath.maxDotProduct(new int[]{23}, new int[]{39}));
@@ -20,26 +21,17 @@ public class GreedyMathTest extends TestCase{
     }
 
     public void testMaximizeDifferentSummandsBasic (){
-        List<Integer> resultSummands = new ArrayList<>();
-        resultSummands.add(1);
-        resultSummands.add(2);
-        resultSummands.add(3);
+        resultSummands = Arrays.asList(1,2,3);
         assertEquals(resultSummands, GreedyMath.maximizeDifferentSummands(6));
     }
 
     public void testMaximizeDifferentSummandsAddEnd (){
-        List<Integer> resultSummands = new ArrayList<>();
-        resultSummands.add(1);
-        resultSummands.add(2);
-        resultSummands.add(5);
+        resultSummands = Arrays.asList(1,2,5);
         assertEquals(resultSummands, GreedyMath.maximizeDifferentSummands(8));
     }
 
     public void testMaximizeDifferentSummandsSingleResult (){
-        List<Integer> resultSummands = new ArrayList<>();
-        resultSummands.add(2);
+        resultSummands = Arrays.asList(2);
         assertEquals(resultSummands, GreedyMath.maximizeDifferentSummands(2));
     }
-
-
 }

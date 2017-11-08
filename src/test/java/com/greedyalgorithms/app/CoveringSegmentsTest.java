@@ -6,44 +6,37 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoveringSegmentsTest extends TestCase{
+public class CoveringSegmentsTest extends TestCase {
     OverlappingSegments overlappingSegments;
     List<Segment> segments;
-    ArrayList<Integer> resultPoints;
+    List<Integer> expectedPoints;
 
-    @Override
-    public void setUp(){
+    public void testSimple3SegmentsOptimalPoints() {
+        segments = ListStub.create(new Segment(1, 3), new Segment(2, 5), new Segment(3, 6));
+        overlappingSegments = new OverlappingSegments(segments);
+        expectedPoints = ListStub.create(3);
+
+        assertEquals(expectedPoints, overlappingSegments.optimalCoveringPoints());
+    }
+
+    public void testUnOrdered4SegmentsOptimalPoints() {
+        segments = ListStub.create(new Segment(4, 7), new Segment(1, 3), new Segment(2, 5), new Segment(5, 6));
+        overlappingSegments = new OverlappingSegments(segments);
+        expectedPoints = ListStub.create(3, 6);
+
+        assertEquals(expectedPoints, overlappingSegments.optimalCoveringPoints());
+    }
+
+    public void testMaximumSegmentsOptimalPoints() {
         segments = new ArrayList<>();
-        resultPoints = new ArrayList<>();
-    }
 
-    public void testSimple3SegmentsOptimalPoints(){
-        segments.add(new Segment(1,3));
-        segments.add(new Segment(2,5));
-        segments.add(new Segment(3,6));
+        for (int i = 0; i < 100; i++) {
+            segments.add(new Segment(i + 1, 1000000000 - i));
+        }
+
         overlappingSegments = new OverlappingSegments(segments);
-        resultPoints.add(3);
+        expectedPoints = ListStub.create(1000000000 - 99);
 
-        assertEquals (resultPoints, overlappingSegments.optimalCoveringPoints());
-    }
-
-    public void testUnOrdered4SegmentsOptimalPoints(){
-        segments.add(new Segment(4,7));
-        segments.add(new Segment(1,3));
-        segments.add(new Segment(2,5));
-        segments.add(new Segment(5,6));
-        overlappingSegments = new OverlappingSegments(segments);
-        resultPoints.add(3);
-        resultPoints.add(6);
-
-        assertEquals (resultPoints, overlappingSegments.optimalCoveringPoints());
-    }
-
-    public void testMaximumSegmentsOptimalPoints(){
-        for (int i=0; i<100; i++){ segments.add(new Segment(i+1,1000000000-i)); }
-        overlappingSegments = new OverlappingSegments(segments);
-        resultPoints.add(1000000000-99);
-
-        assertEquals (resultPoints, overlappingSegments.optimalCoveringPoints());
+        assertEquals(expectedPoints, overlappingSegments.optimalCoveringPoints());
     }
 }
