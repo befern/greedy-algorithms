@@ -1,25 +1,23 @@
 package com.greedyalgorithms.app;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.TreeMap;
+import java.util.*;
 
 public final class GreedyMath {
 
-    private GreedyMath () {}
+    private GreedyMath() {}
 
-    public static int extractBiggestValue(int balance, int[] subtractors){
+    public static int extractBiggestValue(int balance, int[] subtractors) {
         Arrays.sort(subtractors);
 
-        for (int i=subtractors.length; i>0; i--)
-            while (balance >= subtractors[i-1]) return balance - subtractors[i-1];
+        for (int i = subtractors.length; i > 0; i--)
+            while (balance >= subtractors[i - 1]) return balance - subtractors[i - 1];
         return balance;
     }
 
-    public static TreeMap<Double, Integer> itemsForDensityMap(int[] values, int[] weights){
+    public static TreeMap<Double, Integer> itemsForDensityMap(int[] values, int[] weights) {
         TreeMap<Double, Integer> amountsOfDensityValues = new TreeMap<Double, Integer>((Collections.reverseOrder()));
 
-        for(int i=0; i< values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             double itemDensity;
 
             if (weights[i] == 0) itemDensity = Integer.MAX_VALUE;
@@ -43,5 +41,20 @@ public final class GreedyMath {
             sumProduct += listA[i] * listB[i];
         }
         return sumProduct;
+    }
+
+    public static List<Integer> maximizeDifferentSummands(int wholeNumber) {
+        int quantityLeft = wholeNumber;
+        int currentSummand = wholeNumber != 2 ? 1 : 2;
+        List<Integer> summands = new ArrayList<>();
+
+        while (quantityLeft > 0) {
+            if (quantityLeft < currentSummand * 2) currentSummand = quantityLeft;
+            summands.add(currentSummand);
+            quantityLeft -= currentSummand;
+            currentSummand +=1;
+        }
+
+        return summands;
     }
 }
