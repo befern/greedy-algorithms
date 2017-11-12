@@ -4,7 +4,8 @@ import java.util.*;
 
 public final class GreedyMath {
 
-    private GreedyMath() {}
+    private GreedyMath() {
+    }
 
     public static int extractBiggestValue(int balance, int[] subtractors) {
         Arrays.sort(subtractors);
@@ -52,9 +53,28 @@ public final class GreedyMath {
             if (quantityLeft < currentSummand * 2) currentSummand = quantityLeft;
             summands.add(currentSummand);
             quantityLeft -= currentSummand;
-            currentSummand +=1;
+            currentSummand += 1;
         }
 
         return summands;
+    }
+
+    public static String largestNumber(String[] digits) {
+        ArrayList<String> digitList = new ArrayList<>(Arrays.asList(digits));
+        String head = "";
+        String greaterNumber;
+
+        while (!digitList.isEmpty()) {
+            greaterNumber = greaterNumber(digitList);
+            head += greaterNumber;
+            digitList.remove(greaterNumber);
+        }
+
+        return head;
+    }
+
+    private static String greaterNumber(List<String> numbers) {
+        if (numbers.size() == 1) return numbers.get(0);
+        else return numbers.stream().reduce((a, b) -> Integer.parseInt(a + b) > Integer.parseInt(b + a) ? a : b).get();
     }
 }

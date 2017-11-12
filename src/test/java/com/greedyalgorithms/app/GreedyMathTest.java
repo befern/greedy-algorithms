@@ -34,4 +34,26 @@ public class GreedyMathTest extends TestCase{
         resultSummands = Arrays.asList(2);
         assertEquals(resultSummands, GreedyMath.maximizeDifferentSummands(2));
     }
+
+    public void testLargestNumberSimple(){
+        assertEquals("221", GreedyMath.largestNumber(new String[]{"2", "21"}));
+    }
+
+    public void testLargestNumberSingles(){
+        assertEquals("99641", GreedyMath.largestNumber(new String[]{"9", "4", "6", "1", "9"}));
+    }
+
+    public void testLargestNumberDoubles(){
+        assertEquals("923923", GreedyMath.largestNumber(new String[]{"23", "39", "92"}));
+    }
+
+    public void testLargestNumberPerformance(){
+        String[] largestNumberArray = new String[100];
+
+        for (int i=0; i<largestNumberArray.length; i++){
+            largestNumberArray[i] = Integer.toString((i+1)*10);
+        }
+
+        assertEquals(292, GreedyMath.largestNumber(largestNumberArray).length());
+    }
 }
