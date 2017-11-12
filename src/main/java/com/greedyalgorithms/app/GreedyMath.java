@@ -59,7 +59,7 @@ public final class GreedyMath {
         return summands;
     }
 
-    public static String largestNumber(String[] digits) {
+    public static String largestNumberCreator(String[] digits) {
         ArrayList<String> digitList = new ArrayList<>(Arrays.asList(digits));
         String head = "";
         String greaterNumber;

@@ -36,15 +36,15 @@ public class GreedyMathTest extends TestCase{
     }
 
     public void testLargestNumberSimple(){
-        assertEquals("221", GreedyMath.largestNumber(new String[]{"2", "21"}));
+        assertEquals("221", GreedyMath.largestNumberCreator(new String[]{"2", "21"}));
     }
 
     public void testLargestNumberSingles(){
-        assertEquals("99641", GreedyMath.largestNumber(new String[]{"9", "4", "6", "1", "9"}));
+        assertEquals("99641", GreedyMath.largestNumberCreator(new String[]{"9", "4", "6", "1", "9"}));
     }
 
     public void testLargestNumberDoubles(){
-        assertEquals("923923", GreedyMath.largestNumber(new String[]{"23", "39", "92"}));
+        assertEquals("923923", GreedyMath.largestNumberCreator(new String[]{"23", "39", "92"}));
     }
 
     public void testLargestNumberPerformance(){
@@ -54,6 +54,6 @@ public class GreedyMathTest extends TestCase{
             largestNumberArray[i] = Integer.toString((i+1)*10);
         }
 
-        assertEquals(292, GreedyMath.largestNumber(largestNumberArray).length());
+        assertEquals(292, GreedyMath.largestNumberCreator(largestNumberArray).length());
     }
 }
